@@ -2,10 +2,22 @@
 from bs4 import BeautifulSoup
 
 def searchUrl( url,searchStr ):	
-    if ( searchStr in requests.get(url ,headers={'Connection':'close'} ).text ):
+
+    searchStrList = searchStr.split(' ')
+    
+    htmlContent = requests.get(url ,headers={'Connection':'close'} ).text
+    
+    flag = 0
+	
+    for str in searchStrList:
+      if str not in htmlContent:
+        flag = 1 
+	
+    if flag == 0 :
        writehHtml( url )
 
 def writehHtml( url ):
+    print( url + '\n' )
     file = open('link.html', 'a')
     file.write( '<a href=\"' + url + '\">' + url + '</a><BR>' )
     file.close()
