@@ -1,5 +1,6 @@
 ﻿import requests
 from bs4 import BeautifulSoup
+from os.path import exists
 
 def searchUrl( url,searchStr ):	
 
@@ -18,14 +19,27 @@ def searchUrl( url,searchStr ):
 
 def writehHtml( url ):
     print( url + '\n' )
-    file = open('link.html', 'a')
+    file = open(fileName, 'a')
     file.write( '<a href=\"' + url + '\">' + url + '</a><BR>' )
     file.close()
 
-file = open('link.html', 'w')
-file.close() 
+fileName = 'link.html'
+fileCount = 0 
+
+while exists(fileName):
+  print( fileName )
+  fileCount += 1 
+  fileName = fileName[:4] + str(fileCount) + fileName[ len(fileName)-5:len(fileName)]
+
 
 searchStr = input("Enter key word:")
+
+file = open(fileName, 'w')
+file.write( searchStr + '<BR>' )
+file.close() 
+
+
+
 
 for i in range(1,500):
  JKFstr = 'https://www.jkforum.net/home.php?mod=space&uid=430045&do=thread&view=me&order=dateline&from=space&page='
