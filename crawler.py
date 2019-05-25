@@ -68,8 +68,8 @@ while exists(fileName):
   fileName = fileName[:4] + str(fileCount) + fileName[ len(fileName)-5:len(fileName)]
 """
 
-#searchStr = input("Enter key word:")
-searchStr = "高杉麻里"
+searchStr = input("Enter key word:")
+#searchStr = "高杉麻里"
 
 fileName = searchStr + '.html'
 
